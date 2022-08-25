@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import getRandom from './functions';
+import getAdvice from './dummyData';
+import AdviceMain from './components/AdviceMain';
+import AddAdvice from './components/AddAdvice';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App  extends Component {
+  state = { 
+    AdviceList:[],
+    currentAdvice:{} 
+   }
+   componentDidMount(){
+    const AdviceList = getAdvice()
+    const firstQuote= AdviceList[getRandom(AdviceList.length)]
+    this.setState({AdviceList,currentAdvice:firstQuote})
+   } 
+   newAdvice=()=>{
+    const adviceList = [...this.state.AdviceList]
+    const newAdvice = adviceList[getRandom(adviceList.length)]
+    this.setState({currentAdvice:newAdvice})
+   }
+  render() { 
+    return (
+      <React.Fragment>
+      <AdviceMain advice={this.state.currentAdvice} handleNew={this.newAdvice}/>
+      <AddAdvice/>
+      </React.Fragment>
+    );
+  }
 }
-
-export default App;
+ 
+export default App ;
