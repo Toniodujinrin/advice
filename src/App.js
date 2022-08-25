@@ -3,6 +3,7 @@ import getRandom from './functions';
 import getAdvice from './dummyData';
 import AdviceMain from './components/AdviceMain';
 import AddAdvice from './components/AddAdvice';
+import Header from './components/headerBar';
 
 class App  extends Component {
   state = { 
@@ -21,10 +22,11 @@ class App  extends Component {
    }
   render() { 
     return (
-      <React.Fragment>
+      <div id='area'>
+      <Header/>
       <AdviceMain advice={this.state.currentAdvice} handleNew={this.newAdvice}/>
       <AddAdvice/>
-      </React.Fragment>
+      </div>
     );
   }
 }

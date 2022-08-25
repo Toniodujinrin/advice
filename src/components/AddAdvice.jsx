@@ -13,9 +13,12 @@ class AddAdvice extends Component {
 
     render() { 
         return (
-            <div>
+            <div id='add'>
                 <h1>Add Your Own Advice</h1>
+                <div>
                 <Input handleChange={this.handleChange} value={this.state.value}/>
+                <button className='new-button'>Post</button>
+                </div>
             </div>
         );
     }

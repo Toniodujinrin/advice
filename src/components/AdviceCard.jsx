@@ -1,10 +1,9 @@
 import React from 'react';
 const AdviceCard = ({advice}) => {
     return ( 
-        <div>
-        <h1>{advice.Advice}</h1>
+        <div id='card'>
+        <div>{advice.Advice}</div>
         <small>{advice.Author}</small>
-
         </div>
      );
 }
