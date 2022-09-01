@@ -2,22 +2,28 @@ import React, { Component } from 'react';
 import Input from './utils/input';
 class AddAdvice extends Component {
     state = { 
-    value:''
+    post:'',
+    author:''
 
      } 
 
     handleChange=({currentTarget:input})=>{
-       this.setState({value:input.value})
+        
+       if(input.name==='post')this.setState({post:input.value})
+       else if (input.name==='author')this.setState({author:input.value})
+
 
     }
 
     render() { 
+        const {author,post}=this.state
         return (
             <div id='add'>
                 <h1>Add Your Own Advice</h1>
                 <div>
-                <Input handleChange={this.handleChange} value={this.state.value}/>
-                <button className='new-button'>Post</button>
+                <Input label={'Post '} handleChange={this.handleChange} value={this.state.post} name={'post'} type='textare'/>
+                <Input label={'Author '}handleChange={this.handleChange} value={this.state.author} name={'author'} type='text' />
+                <button className='new-button' onClick={()=>this.props.addPost(author,post)}>Post</button>
                 </div>
             </div>
         );
