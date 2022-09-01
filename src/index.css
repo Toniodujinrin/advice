@@ -38,6 +38,12 @@ code {
   align-items: center;
 }
 
+#score-card{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .new-button{ 
   margin: 1rem;
   width: 20%;
@@ -46,6 +52,24 @@ code {
   border: none;
   border-radius: 8px;
   font-weight: bold;
+
+}
+
+#score{
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.7rem;
+  color:black;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-right: 1rem;
+}
+
+.score-button{
+  background-color:white ;
+  border: none;
 
 }
 
