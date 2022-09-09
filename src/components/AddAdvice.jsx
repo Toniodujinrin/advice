@@ -19,12 +19,24 @@ class AddAdvice extends Component {
         const {author,post}=this.state
         return (
             <div id='add'>
+                {
+                
+                (this.props.addMode)?
+                <div>
+                <button onClick={this.props.activateAdd}>Add</button>
+                </div>:
+
+
+                <div>
                 <h1>Add Your Own Advice</h1>
                 <div>
                 <Input label={'Post '} handleChange={this.handleChange} value={this.state.post} name={'post'} type='textare'/>
                 <Input label={'Author '}handleChange={this.handleChange} value={this.state.author} name={'author'} type='text' />
                 <button className='new-button' onClick={()=>this.props.addPost(author,post)}>Post</button>
                 </div>
+                </div>
+                
+                }
             </div>
         );
     }

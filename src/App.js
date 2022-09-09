@@ -8,32 +8,31 @@ import Header from './components/headerBar';
 class App  extends Component {
   state = { 
     AdviceList:[],
-    currentAdvice:{} 
-   }
+    currentAdvice:{},
+    addMode:false 
+   };
    componentDidMount(){
-    const AdviceList = getAdvice()
-        const firstQuote= AdviceList[getRandom(AdviceList.length)]
-    this.setState({AdviceList,currentAdvice:firstQuote})
-   } 
+    const AdviceList = getAdvice();
+    const firstQuote= AdviceList[getRandom(AdviceList.length)];
+    this.setState({AdviceList,currentAdvice:firstQuote});
+   }; 
    newAdvice=()=>{
-                  
-    const adviceList = [...this.state.AdviceList]
-    const newAdvice = adviceList[getRandom(adviceList.length)]
-    this.setState({currentAdvice:newAdvice})
-   }
+    const adviceList = [...this.state.AdviceList];
+    const newAdvice = adviceList[getRandom(adviceList.length)];
+    this.setState({currentAdvice:newAdvice});
+   };
    handleIncreamen=(id)=>{
-     const adviceList = [...this.state.AdviceList]
-     const advice = adviceList.filter(advice=> advice.id ===id )
-     advice[0].score += 1
-     this.setState({AdviceList:adviceList})
-   }
+     const adviceList = [...this.state.AdviceList];
+     const advice = adviceList.filter(advice=> advice.id ===id );
+     advice[0].score += 1;
+     this.setState({AdviceList:adviceList});
+   };
    handleDecreament=(id)=>{
-    const adviceList = [...this.state.AdviceList]
-    const advice = adviceList.filter(advice=> advice.id ===id )
-    advice[0].score -= 1
-    
-    this.setState({AdviceList:adviceList})
-   }
+    const adviceList = [...this.state.AdviceList];
+    const advice = adviceList.filter(advice=> advice.id ===id );
+    advice[0].score -= 1;
+    this.setState({AdviceList:adviceList});
+   };
    addPost=(author,advice)=>{
     const AdviceList = [...this.state.AdviceList];
     const post={};
@@ -41,20 +40,25 @@ class App  extends Component {
     post.Author=author;
     post.score=0;
     post.id=AdviceList.length + 1;
-    AdviceList.push(post)
-    console.log(AdviceList)
-    
-    this.setState({AdviceList})
-    this.setState({currentAdvice:post})
-
-    
+    AdviceList.push(post);
+    console.log(AdviceList);
+    this.setState({AdviceList});
+    this.setState({currentAdvice:post});
+    const addMode=this.state.addMode;
+    this.setState({addMode:!addMode});
+   };
+   activateAdd=()=>{
+    const addMode=this.state.addMode;
+    this.setState({addMode:!addMode});
    }
   render() { 
+    const {addMode,currentAdvice}= this.state
     return (
+
       <div id='area'>
       <Header/>
-      <AdviceMain advice={this.state.currentAdvice} handleNew={this.newAdvice} handleDecreament={this.handleDecreament} handleIncreament={this.handleIncreamen}/>
-      <AddAdvice addPost={this.addPost}/>
+      <AdviceMain advice={currentAdvice} handleNew={this.newAdvice} handleDecreament={this.handleDecreament} handleIncreament={this.handleIncreamen}/>
+      <AddAdvice addPost={this.addPost} addMode={addMode} activateAdd={this.activateAdd}/>
       </div>
     );
   }
